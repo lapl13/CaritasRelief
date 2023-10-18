@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE51CC2D2AE053CF00088134 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51CC2C2AE053CF00088134 /* ModelData.swift */; };
+		CE51CC342AE06FDF00088134 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51CC332AE06FDF00088134 /* ModelData.swift */; };
 		D5BF72902AE04E1200FBB2F8 /* ProyectoCaritasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */; };
 		D5BF72922AE04E1200FBB2F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF72912AE04E1200FBB2F8 /* ContentView.swift */; };
 		D5BF72942AE04E1300FBB2F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BF72932AE04E1300FBB2F8 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE51CC2C2AE053CF00088134 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		CE51CC332AE06FDF00088134 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelData.swift; path = "ProyectoCaritas/Backend and vars/ModelData.swift"; sourceTree = SOURCE_ROOT; };
 		D5BF728C2AE04E1200FBB2F8 /* ProyectoCaritas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProyectoCaritas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProyectoCaritasApp.swift; sourceTree = "<group>"; };
 		D5BF72912AE04E1200FBB2F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,12 +77,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE51CC2B2AE0538000088134 /* Backend */ = {
+		CE51CC352AE06FFA00088134 /* Backend and vars */ = {
 			isa = PBXGroup;
 			children = (
-				CE51CC2C2AE053CF00088134 /* ModelData.swift */,
+				CE51CC332AE06FDF00088134 /* ModelData.swift */,
 			);
-			path = Backend;
+			path = "Backend and vars";
 			sourceTree = "<group>";
 		};
 		D5BF72832AE04E1200FBB2F8 = {
@@ -108,7 +108,7 @@
 		D5BF728E2AE04E1200FBB2F8 /* ProyectoCaritas */ = {
 			isa = PBXGroup;
 			children = (
-				CE51CC2B2AE0538000088134 /* Backend */,
+				CE51CC352AE06FFA00088134 /* Backend and vars */,
 				D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */,
 				D5BF72912AE04E1200FBB2F8 /* ContentView.swift */,
 				D5BF72BB2AE0516C00FBB2F8 /* CaritasSplashScreen.swift */,
@@ -276,7 +276,7 @@
 			files = (
 				D5BF72922AE04E1200FBB2F8 /* ContentView.swift in Sources */,
 				D5BF72902AE04E1200FBB2F8 /* ProyectoCaritasApp.swift in Sources */,
-				CE51CC2D2AE053CF00088134 /* ModelData.swift in Sources */,
+				CE51CC342AE06FDF00088134 /* ModelData.swift in Sources */,
 				D5BF72BC2AE0516C00FBB2F8 /* CaritasSplashScreen.swift in Sources */,
 				D5BF72BA2AE04E4D00FBB2F8 /* LoginWindow.swift in Sources */,
 			);
