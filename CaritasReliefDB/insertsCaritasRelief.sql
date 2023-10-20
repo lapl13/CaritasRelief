@@ -35,16 +35,16 @@ INSERT INTO Donantes (nombres, apellidos, direccion, referenciaDomicilio, telCas
 INSERT INTO Donantes (nombres, apellidos, direccion, referenciaDomicilio, telCasa, telCelular, activo) VALUES ('Elena', 'Sada', 'Avenida Benito Juárez #789, Colonia Centro, Guadalupe', 'Casa de dos pisos, pintada de blanco, junto al parque', '8183816244', '8122030854', 1);
 
 --Logins
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JMartinez100', '**Jomar100**', 1, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('MGarcia100', '**Magar100**', 2, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JGomez110', '123', 1, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JGarza120', '123', 1, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JRamirez230', '123', 1, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('LFlores140', '123', 1, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Agarza', '123', 2, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('LSanchez', '123', 2, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Pperez', '123', 2, 1);
-INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Jflores', '123', 2, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JMartinez100', '321A7A7BADBE2E377B40F54E80C822A2D911D8A059231E4357626F8517C6D9A4', 1, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('MGarcia100', '2AA1DDD3DBF33CEA0B4A766CE2190C5A58BD4697A244EDCA4B7AF765A24A919D', 2, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JGomez110', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 1, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JGarza120', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 1, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('JRamirez230', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 1, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('LFlores140', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 1, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Agarza', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 2, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('LSanchez', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 2, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Pperez', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 2, 1);
+INSERT INTO Logins (usuario, contrasena, tipo, activo) VALUES ('Jflores', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE', 2, 1);
 
 --Recolectores
 INSERT INTO Recolectores (idLogin, nombres, apellidos, activo) VALUES (1, 'José', 'Martínez', 1);

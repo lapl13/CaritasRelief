@@ -10,9 +10,9 @@ CREATE TABLE Recibos
     idDonante int NOT NULL,
     cantidad money,
     cobrado bit,
-    comentarios varchar(50),
+    comentarios varchar(100),
     fecha date,
-    comentarioHorario varchar(50),
+    comentarioHorario varchar(150),
     activo bit NOT NULL
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE Logins
 (
     idLogin int IDENTITY(1,1) PRIMARY KEY NOT NULL,
     usuario varchar(50) NOT NULL,
-    contrasena varchar(50) NOT NULL,
+    contrasena varchar(64) NOT NULL,
     tipo int NOT NULL,
     activo bit NOT NULL
 );
