@@ -199,6 +199,7 @@ func getDonantes() -> [donantesHoy]{
     }
     """
     
+
     guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
         return []
     }
