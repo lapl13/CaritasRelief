@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var list:Array<Recibo> = []
     var body: some View {
         VStack {
             Image(systemName: "globe")
