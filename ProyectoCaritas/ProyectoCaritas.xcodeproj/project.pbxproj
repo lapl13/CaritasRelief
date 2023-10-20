@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE51CC312AE06C7B00088134 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51CC302AE06C7B00088134 /* ModelData.swift */; };
+		CEB6D7A92AE318BF00709F62 /* CaritasFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEB6D7A82AE318BF00709F62 /* CaritasFont.ttf */; };
 		D5BF72902AE04E1200FBB2F8 /* ProyectoCaritasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */; };
 		D5BF72922AE04E1200FBB2F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF72912AE04E1200FBB2F8 /* ContentView.swift */; };
 		D5BF72942AE04E1300FBB2F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BF72932AE04E1300FBB2F8 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		CE51CC302AE06C7B00088134 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		CEB6D7A82AE318BF00709F62 /* CaritasFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CaritasFont.ttf; path = "../../../../Downloads/Argentum Novus SemiBold 2/CaritasFont.ttf"; sourceTree = "<group>"; };
 		D5BF728C2AE04E1200FBB2F8 /* ProyectoCaritas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProyectoCaritas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProyectoCaritasApp.swift; sourceTree = "<group>"; };
 		D5BF72912AE04E1200FBB2F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D5BF72912AE04E1200FBB2F8 /* ContentView.swift */,
 				D5BF72BB2AE0516C00FBB2F8 /* CaritasSplashScreen.swift */,
 				D5BF72B92AE04E4D00FBB2F8 /* LoginWindow.swift */,
+				CEB6D7A82AE318BF00709F62 /* CaritasFont.ttf */,
 				FB2585192AE1AA78001EF05F /* DonacionesView.swift */,
 				FB25851B2AE1AAA8001EF05F /* DonacionesViews */,
 				D5BF72932AE04E1300FBB2F8 /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 			files = (
 				D5BF72972AE04E1300FBB2F8 /* Preview Assets.xcassets in Resources */,
 				D5BF72942AE04E1300FBB2F8 /* Assets.xcassets in Resources */,
+				CEB6D7A92AE318BF00709F62 /* CaritasFont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +464,7 @@
 				DEVELOPMENT_TEAM = 8N3K3ZWMDG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProyectoCaritas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -489,6 +494,7 @@
 				DEVELOPMENT_TEAM = 8N3K3ZWMDG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProyectoCaritas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
