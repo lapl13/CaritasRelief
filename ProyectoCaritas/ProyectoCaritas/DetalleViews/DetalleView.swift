@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct DetalleView: View {
+    var donante:donantesHoy
+    @State private var listaRecibos = getRecibos(token:"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKR29tZXoxMTAiLCJpYXQiOiIxMC8yMC8yMDIzIDU6Mjk6MzFQTSIsImp0aSI6IjJlNzA4OTE0LTk5OTgtNDkyMC04NTRjLTIyNTJhZTc3MGZkMiIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjk3OTA5MzcxfQ._uhlYWpPV7xz9vUkqfMrH4Iz3oHTPcNSRGmHnPTWBVg")
     var body: some View {
         VStack(alignment: .center){
-            HeaderView(titulo: "Juan Perez")
+            HeaderView(titulo: "\(donante.nombres) \(donante.apellidos)")
             VStack{
                 HStack(alignment: .center){
                     Image(systemName: "mappin.circle.fill")
                         .font(.largeTitle)
                         .foregroundColor(ColorPrincipal)
                         
-                    Text("Aulas 3, Av. Eugenio Garza Sada Sur, Tecnológico, 64700")
+                    Text(donante.direccion)
                         .font(.title)
                         .padding(.leading, 10)
                     Spacer()
@@ -28,7 +30,7 @@ struct DetalleView: View {
                         .foregroundColor(ColorPrincipal)
                         
                     
-                    Text("818 999 9999")
+                    Text(donante.telCelular)
                         .font(.title)
                         .padding(.leading, 10)
                     Spacer()
@@ -40,7 +42,7 @@ struct DetalleView: View {
                         .font(.largeTitle)
                         .foregroundColor(ColorPrincipal)
                     
-                    Text("818 345 9824")
+                    Text(donante.telCasa)
                         .font(.title)
                         .padding(.leading, 10)
                     Spacer()
@@ -49,7 +51,7 @@ struct DetalleView: View {
                 
                 
                 
-            }.padding(.horizontal, 40)
+            }.padding(.horizontal, 30)
             List(){
                 ReciboView()
                     .listRowSeparator(.hidden)
@@ -66,6 +68,7 @@ struct DetalleView: View {
 
 struct DetalleView_Previews: PreviewProvider {
     static var previews: some View {
-        DetalleView()
+        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
+        DetalleView(donante: donante)
     }
 }

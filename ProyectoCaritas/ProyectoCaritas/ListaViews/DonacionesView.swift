@@ -9,11 +9,12 @@ import SwiftUI
 
 struct DonacionesView: View {
     @State private var visited = true
-    @State private var listaRecibos = getRecibos(token :"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKR29tZXoxMTAiLCJpYXQiOiIxMC8yMC8yMDIzIDU6Mjk6MzFQTSIsImp0aSI6IjJlNzA4OTE0LTk5OTgtNDkyMC04NTRjLTIyNTJhZTc3MGZkMiIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjk3OTA5MzcxfQ._uhlYWpPV7xz9vUkqfMrH4Iz3oHTPcNSRGmHnPTWBVg")
+    @State private var listaDonantes = getDonantes()
     var body: some View {
         NavigationStack{
             VStack{
                 HeaderView(titulo: "DONACIONES")
+                /*
                 Picker("Visita", selection: $visited) {
                     Text("Visitado")
                         .tag(true)
@@ -24,15 +25,15 @@ struct DonacionesView: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
                 
+                */
                 
-                
-                List(listaRecibos){reciboItem in
+                List(listaDonantes){donanteItem in
                     NavigationLink{
                         
-                        Text("HOLA")
+                        DetalleView(donante: donanteItem)
                         
                     }label:{
-                        DonacionView(recibo: reciboItem)
+                        DonacionView(donante: donanteItem)
                     }
         
                 }
