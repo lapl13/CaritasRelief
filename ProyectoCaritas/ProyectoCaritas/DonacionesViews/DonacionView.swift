@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DonacionView: View {
+    var recibo: Recibo
     var body: some View {
+    
         VStack{
             VStack(alignment: .leading){
                 VStack(alignment: .leading){
@@ -73,6 +75,7 @@ struct DonacionView: View {
 
 struct DonacionView_Previews: PreviewProvider {
     static var previews: some View {
-        DonacionView()
+        @State var recibo:Recibo = Recibo(id: "", idDonante: 0, cantidad: 0, cobrado: false, fecha: "", comentarioHorario: "", activo: false, donante: Persona(nombres: "", apellidos: "", direccion: ""))
+        DonacionView(recibo: recibo)
     }
 }

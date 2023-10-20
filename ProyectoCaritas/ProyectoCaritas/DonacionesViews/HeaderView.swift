@@ -18,7 +18,7 @@ struct HeaderView: View {
                 .frame(width:1000)
                 .padding(.bottom, 30)
                 .padding(.top, 80)
-                .background(ColorPrincipal)
+                .background(ColorSecundario)
                 .foregroundColor(.white)
                 
                 
