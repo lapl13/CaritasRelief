@@ -21,6 +21,8 @@
 		FB25851A2AE1AA78001EF05F /* DonacionesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2585192AE1AA78001EF05F /* DonacionesView.swift */; };
 		FB25851D2AE1AABE001EF05F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB25851C2AE1AABE001EF05F /* HeaderView.swift */; };
 		FB25851F2AE1AAD3001EF05F /* DonacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB25851E2AE1AAD3001EF05F /* DonacionView.swift */; };
+		FBB720FE2AE2FE34001B3334 /* DetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB720FD2AE2FE34001B3334 /* DetalleView.swift */; };
+		FBB721002AE30319001B3334 /* ReciboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB720FF2AE30319001B3334 /* ReciboView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		FB2585192AE1AA78001EF05F /* DonacionesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonacionesView.swift; sourceTree = "<group>"; };
 		FB25851C2AE1AABE001EF05F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FB25851E2AE1AAD3001EF05F /* DonacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonacionView.swift; sourceTree = "<group>"; };
+		FBB720FD2AE2FE34001B3334 /* DetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleView.swift; sourceTree = "<group>"; };
+		FBB720FF2AE30319001B3334 /* ReciboView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReciboView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,13 +159,22 @@
 			path = ProyectoCaritasUITests;
 			sourceTree = "<group>";
 		};
-		FB25851B2AE1AAA8001EF05F /* DonacionesViews */ = {
+		FB25851B2AE1AAA8001EF05F /* ListaViews */ = {
 			isa = PBXGroup;
 			children = (
-				FB25851C2AE1AABE001EF05F /* HeaderView.swift */,
+				FB2585192AE1AA78001EF05F /* DonacionesView.swift */,
 				FB25851E2AE1AAD3001EF05F /* DonacionView.swift */,
 			);
-			path = DonacionesViews;
+			path = ListaViews;
+			sourceTree = "<group>";
+		};
+		FBB720FC2AE2FBDA001B3334 /* DetalleViews */ = {
+			isa = PBXGroup;
+			children = (
+				FBB720FD2AE2FE34001B3334 /* DetalleView.swift */,
+				FBB720FF2AE30319001B3334 /* ReciboView.swift */,
+			);
+			path = DetalleViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +313,8 @@
 				CE51CC312AE06C7B00088134 /* ModelData.swift in Sources */,
 				FB25851F2AE1AAD3001EF05F /* DonacionView.swift in Sources */,
 				FB25851A2AE1AA78001EF05F /* DonacionesView.swift in Sources */,
+				FBB720FE2AE2FE34001B3334 /* DetalleView.swift in Sources */,
+				FBB721002AE30319001B3334 /* ReciboView.swift in Sources */,
 				D5BF72BC2AE0516C00FBB2F8 /* CaritasSplashScreen.swift in Sources */,
 				D5BF72BA2AE04E4D00FBB2F8 /* LoginWindow.swift in Sources */,
 				FB25851D2AE1AABE001EF05F /* HeaderView.swift in Sources */,

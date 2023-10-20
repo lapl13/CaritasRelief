@@ -199,7 +199,8 @@ func getDonantes() -> [donantesHoy]{
     }
     """
     
-    guard let url = URL(string: "http://localhost:5053/graphql") else{
+
+    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
         return []
     }
     var request = URLRequest(url: url)
