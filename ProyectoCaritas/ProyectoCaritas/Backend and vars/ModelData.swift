@@ -85,7 +85,7 @@ func login(username: String, password: String) -> User? {
 }
 
 
-func getRecibos() -> [Recibo] {
+func getRecibos(token:String) -> [Recibo] {
     let graphQLQuery = """
         {
           recibos(where: { recolector: { id: { eq: 2 } } }) {
@@ -117,7 +117,7 @@ func getRecibos() -> [Recibo] {
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
     // Replace "YOUR_AUTH_TOKEN_HERE" with your actual authorization token
-    request.setValue("Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBlMTIzIiwiaWF0IjoiMTAvMTkvMjAyMyA1OjI3OjE5IFBNIiwianRpIjoiMzJmYWEyZTUtZTZmNC00ZTg3LTljN2ItZDA0MDEzNDVmNGM5Iiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjk3ODIyODM5fQ.WKSnVR0rEoZZZ3nCHdKx0ybTLqDbrO9mfoYwT6l4nXM", forHTTPHeaderField: "Authorization")
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
     let requestBody = ["query": graphQLQuery]
     do {
