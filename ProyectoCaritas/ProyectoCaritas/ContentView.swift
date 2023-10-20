@@ -8,19 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isSplashScreenPresented = true
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+            ZStack {
+                if isSplashScreenPresented {
+                    SplashScreen()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation {
+                                    isSplashScreenPresented = false
+                                }
+                            }
+                        }
+                } else {
+                    LoginWindow()
+                }
+            }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+      ContentView()
+  }
 }
