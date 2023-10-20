@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginWindow: View {
-    guard let customFont = UIFont(name: "CaritasFont", size: UIFont.labelFontSize) else{fatalError("fuckOff")}
     
     let ColorP = Color(red: 0/255, green: 59/255, blue: 92/255)
     let ColorS = Color(red: 0/255, green: 156/255, blue: 166/255)
