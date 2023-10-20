@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct HeaderView: View {
+    var titulo = ""
     var body: some View {
         VStack {
             
-            Text("DONACIONES")
+            Text(titulo)
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
                 .bold()
@@ -33,6 +34,7 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        let titulo = ""
+        HeaderView(titulo: titulo)
     }
 }

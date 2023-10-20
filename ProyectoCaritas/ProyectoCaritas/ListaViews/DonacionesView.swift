@@ -13,7 +13,7 @@ struct DonacionesView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                HeaderView()
+                HeaderView(titulo: "DONACIONES")
                 Picker("Visita", selection: $visited) {
                     Text("Visitado")
                         .tag(true)
