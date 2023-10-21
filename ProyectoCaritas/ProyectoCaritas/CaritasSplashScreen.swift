@@ -18,6 +18,7 @@ struct SplashScreen: View {
                     .foregroundColor(ColorP)
                 VStack {
                     Image("CaritasLogo")
+                       
                 }
                 .scaleEffect(size)
                 .opacity(opacity)

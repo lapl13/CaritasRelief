@@ -8,9 +8,15 @@
 import Foundation
 import SwiftUI
 
+//Global vars
+
 var ColorPrincipal = Color(red:0,green: 156/255,blue: 166/255)
 var ColorSecundario = Color(red:0,green: 59/255,blue: 92/255)
+var Usuario:User = User(token: "", role: 0, user: [0])
+var Recibos:[Recibo] = []
+var Donantes:[donantesHoy] = []
 
+//Structures
 struct User:Codable{
     let token: String
     let role: Int
@@ -46,6 +52,7 @@ struct Persona:Codable{
     let direccion:String
 }
 
+//API Calls
 func login(username: String, password: String) -> User? {
     var user: User?
     
@@ -56,7 +63,7 @@ func login(username: String, password: String) -> User? {
     }
     """
     
-    guard let url = URL(string: "http://localhost:5122/auth/login") else {
+    guard let url = URL(string: "http://10.14.255.88:8804/auth/login") else {
         return nil
     }
     
@@ -109,7 +116,7 @@ func getRecibos(token:String) -> [Recibo] {
           }
         }
         """
-    guard let url = URL(string: "http://localhost:5053/graphql") else {
+    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else {
         return []
     }
 
@@ -168,6 +175,7 @@ for recibo in recibos {
 }
 */
 
+//Some other structs
 struct DonanteResponse:Codable{
     let data:DonanteDataResponse
 }
@@ -185,6 +193,7 @@ struct donantesHoy:Codable, Identifiable{
     let telCasa:String
 }
 
+//API Calls
 func getDonantes() -> [donantesHoy]{
     let query = """
     {
