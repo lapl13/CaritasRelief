@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DonacionView: View {
     var donante: donantesHoy
+    @State var barColor:Color = .red
     var body: some View {
     
         VStack{
@@ -31,7 +32,7 @@ struct DonacionView: View {
                         */
                         //numero de recibos
                         HStack{
-                            Text("2")
+                            Text("\(donante.cantidadRecibosActivos)")
                             Image(systemName: "doc.plaintext")
                             
                             
@@ -51,10 +52,10 @@ struct DonacionView: View {
                 //aqui se tiene que cambiar el color de lo0s dos rectangulos para actualizar la barra de estado
                 ZStack(alignment: .top){
                     Rectangle()
-                        .fill(.red)
+                        .fill(barColor)
                         .frame(width: .infinity, height: 10)
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(.red)
+                        .fill(barColor)
                         .frame(width: .infinity, height: 20)
                 }
                     
@@ -67,6 +68,13 @@ struct DonacionView: View {
             )
             
             .background(.white)
+            .onAppear(){
+                if(donante.cantidadRecibosActivos == 0){
+                    barColor = .green
+                }else{
+                    barColor = .red
+                }
+            }
             
             
             
@@ -76,7 +84,7 @@ struct DonacionView: View {
 
 struct DonacionView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
+        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "", cantidadRecibosActivos: 1)
         DonacionView(donante: donante)
     }
 }

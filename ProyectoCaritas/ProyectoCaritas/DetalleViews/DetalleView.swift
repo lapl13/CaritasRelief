@@ -9,8 +9,11 @@ import SwiftUI
 
 struct DetalleView: View {
     var donante:donantesHoy
-    @State private var listaRecibos = getRecibos(token:"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKR29tZXoxMTAiLCJpYXQiOiIxMC8yMC8yMDIzIDU6Mjk6MzFQTSIsImp0aSI6IjJlNzA4OTE0LTk5OTgtNDkyMC04NTRjLTIyNTJhZTc3MGZkMiIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjk3OTA5MzcxfQ._uhlYWpPV7xz9vUkqfMrH4Iz3oHTPcNSRGmHnPTWBVg")
-    var body: some View {
+    var recolector:Int
+    @State var token:String
+        var body: some View {
+            var Donante = getRecibos(token: token, donante: donante.id, recolector: 1)
+            var listaRecibos = Donante[0].recibosActivos
         VStack(alignment: .center){
             HeaderView(titulo: "\(donante.nombres) \(donante.apellidos)")
             VStack{
@@ -52,12 +55,8 @@ struct DetalleView: View {
                 
                 
             }.padding(.horizontal, 30)
-            List(){
-                ReciboView()
-                    .listRowSeparator(.hidden)
-                ReciboView()
-                    .listRowSeparator(.hidden)
-                ReciboView()
+            List(listaRecibos){recibo in
+                ReciboView(recibo: recibo,token: token)
                     .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
@@ -68,7 +67,7 @@ struct DetalleView: View {
 
 struct DetalleView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
-        DetalleView(donante: donante)
+        @State var donante:donantesHoy = donantesHoy(id: "1", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "", cantidadRecibosActivos: 1)
+        DetalleView(donante: donante,recolector: 1, token: "")
     }
 }

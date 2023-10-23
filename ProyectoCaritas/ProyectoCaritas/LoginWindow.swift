@@ -18,6 +18,8 @@ struct LoginWindow: View {
     @State private var IdPassword: String = ""
     @State private var loginerror:Bool = false
     @State private var authorized:Bool = false
+    @State private var token:String = ""
+    @State private var recolector:Int = 0
     
     // Offsets for animation
     @State private var caritas40Offset: CGFloat = UIScreen.main.bounds.width
@@ -35,7 +37,10 @@ struct LoginWindow: View {
                     
                     
                     Image("CaritasLogo")
+                        .resizable(resizingMode: .stretch)
+                        .aspectRatio(contentMode: .fit)
                         .padding(.top, 80)
+                        .frame(width: 255)
                     Spacer()
                     /*
                      Image("Caritas40")
@@ -86,6 +91,9 @@ struct LoginWindow: View {
                         let x = login(username: IdUsername, password: IdPassword)
                         if(x != nil){
                             Usuario = x!
+                            print(Usuario.token)
+                            token = x!.token
+                            recolector = x!.user[0]
                             authorized.toggle()
                         }else{
                             loginerror.toggle()
@@ -104,7 +112,7 @@ struct LoginWindow: View {
                         Alert(title: Text("Usuario o contraseña incorrectos"))
                     }
                     .navigationDestination( isPresented: $authorized){
-                        DonacionesView()
+                        DonacionesView(token:token, recolector: recolector)
                     }
                     .onAppear {
                         withAnimation(.spring().delay(0.8)) {
@@ -115,8 +123,8 @@ struct LoginWindow: View {
                     Spacer()
                 }
             }
+            }
         }
-    }
 }
 
 struct LoginWindow_Previews: PreviewProvider {
