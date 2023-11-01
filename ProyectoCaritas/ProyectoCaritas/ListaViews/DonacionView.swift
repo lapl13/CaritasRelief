@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DonacionView: View {
-    var recibo: Recibo
+    var donante: donantesHoy
     var body: some View {
     
         VStack{
@@ -16,7 +16,7 @@ struct DonacionView: View {
                 VStack(alignment: .leading){
                     HStack(alignment: .center){
                         //Nombre de donante
-                        Text("Juan Pérez")
+                        Text("\(donante.nombres) \(donante.apellidos)")
                             .font(.largeTitle)
                             .bold()
                         Spacer()
@@ -24,10 +24,11 @@ struct DonacionView: View {
                         
                         
                         //cantidad de donacion
+                        /*
                         Text("$200")
                             .font(.title)
                             .foregroundColor(Color(red: 0.003, green: 0.208, blue: 0.327))
-                        
+                        */
                         //numero de recibos
                         HStack{
                             Text("2")
@@ -42,7 +43,7 @@ struct DonacionView: View {
                     }.padding(.bottom, 8)
                     
                     //direccion
-                    Text("Aulas 3, Av. Eugenio Garza Sada Sur, Tecnológico, 64700")
+                    Text(donante.direccion)
                         .font(.title2)
                 }
                 .padding(.horizontal, 20)
@@ -75,7 +76,7 @@ struct DonacionView: View {
 
 struct DonacionView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var recibo:Recibo = Recibo(id: "", idDonante: 0, cantidad: 0, cobrado: false, fecha: "", comentarioHorario: "", activo: false, donante: Persona(nombres: "", apellidos: "", direccion: ""))
-        DonacionView(recibo: recibo)
+        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
+        DonacionView(donante: donante)
     }
 }

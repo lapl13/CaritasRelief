@@ -167,3 +167,84 @@ for recibo in recibos {
     // Add additional processing as needed
 }
 */
+
+struct DonanteResponse:Codable{
+    let data:DonanteDataResponse
+}
+
+struct DonanteDataResponse:Codable{
+    let donantesHoy:[donantesHoy]
+}
+
+struct donantesHoy:Codable, Identifiable{
+    let id:String
+    let nombres:String
+    let apellidos:String
+    let direccion:String
+    let telCelular:String
+    let telCasa:String
+}
+
+func getDonantes() -> [donantesHoy]{
+    let query = """
+    {
+      donantesHoy(date: "2023-10-22", idRecolector: 1){
+        id,
+        nombres,
+        apellidos,
+        direccion,
+        telCelular,
+        telCasa
+      }
+    }
+    """
+    
+
+    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
+        return []
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue("Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKR29tZXoxMTAiLCJpYXQiOiIxMC8yMC8yMDIzIDU6Mjk6MzFQTSIsImp0aSI6IjJlNzA4OTE0LTk5OTgtNDkyMC04NTRjLTIyNTJhZTc3MGZkMiIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjk3OTA5MzcxfQ._uhlYWpPV7xz9vUkqfMrH4Iz3oHTPcNSRGmHnPTWBVg", forHTTPHeaderField: "Authorization")
+    let requestBody = ["query": query]
+    do {
+        let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
+        request.httpBody = jsonData
+    } catch {
+        print("Error creating request body: \(error)")
+        return []
+    }
+    
+    var lista:[donantesHoy] = []
+    
+    let semaphore = DispatchSemaphore(value: 0)
+    
+    let task = URLSession.shared.dataTask(with: request){
+        data,response,error in
+        defer {
+            semaphore.signal()
+        }
+
+        if let error = error {
+            print("Error: \(error)")
+            return
+        }
+
+        if let data = data {
+            let jsonDecoder = JSONDecoder()
+            do {
+                let response = try jsonDecoder.decode(DonanteResponse.self, from: data)
+                lista = response.data.donantesHoy
+            } catch {
+                print("Error decoding GraphQL response: \(error)")
+            }
+        }
+    }
+    task.resume()
+    
+    semaphore.wait()
+    return lista
+    
+    
+}
