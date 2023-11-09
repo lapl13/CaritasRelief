@@ -30,22 +30,22 @@ struct ComentariosView: View {
                 .font(.system(size: 20))
             Spacer()
             Button(action: confirm){
-                Image(systemName: "checkmark")
-                    .padding(.horizontal,150 )
+                Text("Enviar")
+                    .padding(.horizontal,120 )
                     .padding(.vertical,12)
                     .font(.title)
             }.buttonStyle(.borderedProminent)
                 .tint(ColorPrincipal)
-                .alert("Enviar comentarios?",isPresented: $confirmation){
-                    Button("NO"){}
-                    Button("SI"){
+                .alert("¿Estas seguro de que deseas enviar los comentarios?",isPresented: $confirmation){
+                    Button("No"){}
+                    Button("Si"){
                         sendComments(recibo: recibo, comentarios: text, token: token)
                         done.toggle()
                         
                     }
                 }
                 .alert("Comentarios enviados exitosamente",isPresented: $done){
-                    Button("OK"){
+                    Button("Ok"){
                         dismiss()
                     }
                 }

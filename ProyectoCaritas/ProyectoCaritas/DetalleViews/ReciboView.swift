@@ -62,8 +62,8 @@ struct ReciboView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(ColorPrincipal)
-                        .alert("Continuar?",isPresented: $confirmarAccion){
-                            Button("SI"){
+                        .alert("¿Deseas marcar el recibo como cobrado?",isPresented: $confirmarAccion){
+                            Button("Si"){
                                 let response = cobrarRecibo(recibo: recibo.id, token: token)
                                 if(response == false){
                                     errorAlert.toggle()
@@ -71,7 +71,7 @@ struct ReciboView: View {
                                 
                                 
                             }
-                            Button("NO"){}
+                            Button("No"){}
                         }
                         
                         
@@ -80,6 +80,7 @@ struct ReciboView: View {
                         Spacer()
                         
                     }
+                    .padding(.bottom, 20)
                 }
                 .padding(.top, 20)
                 .overlay(
