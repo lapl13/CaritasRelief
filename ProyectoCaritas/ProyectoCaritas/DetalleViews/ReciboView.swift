@@ -62,14 +62,16 @@ struct ReciboView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(ColorPrincipal)
-                        .alert("Continuar?",isPresented: $confirmarAccion){
-                            Button("SI"){
+                        .alert("¿Deseas marcar el recibo como cobrado?",isPresented: $confirmarAccion){
+                            Button("Si"){
                                 let response = cobrarRecibo(recibo: recibo.id, token: token)
                                 if(response == false){
                                     errorAlert.toggle()
                                 }
+                                
+                                
                             }
-                            Button("NO"){}
+                            Button("No"){}
                         }
                         
                         
@@ -78,6 +80,7 @@ struct ReciboView: View {
                         Spacer()
                         
                     }
+                    .padding(.bottom, 20)
                 }
                 .padding(.top, 20)
                 .overlay(
@@ -102,6 +105,6 @@ struct ReciboView: View {
 
 struct ReciboView_Previews: PreviewProvider {
     static var previews: some View {
-        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1"),token: "")
+        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1", cobrado: 2 ,donante: Donante(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")), token:"")
     }
 }

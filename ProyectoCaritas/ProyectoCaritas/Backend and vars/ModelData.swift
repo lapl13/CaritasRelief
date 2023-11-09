@@ -14,7 +14,6 @@ var ColorPrincipal = Color(red:0,green: 156/255,blue: 166/255)
 var ColorSecundario = Color(red:0,green: 59/255,blue: 92/255)
 var Usuario:User = User(token: "", role: 0, user: [0])
 var Recibos:[recibosActivos] = []
-var Donantes:[donantesHoy] = []
 
 //Structures
 struct User:Codable{
@@ -28,10 +27,10 @@ struct Response: Codable {
 }
 
 struct DataResponse: Codable {
-    let donantes: [Donante]
+    let recolector: Recolector
 }
 
-struct Donante: Codable, Identifiable {
+struct Recolector: Codable, Identifiable {
     let id: String
     let recibosActivos: [recibosActivos]
 }
@@ -39,6 +38,17 @@ struct Donante: Codable, Identifiable {
 struct recibosActivos:Codable, Identifiable{
     let cantidad:Double
     let id:String
+    let cobrado: Int
+    let donante:Donante
+}
+
+struct Donante:Codable, Identifiable{
+    let id:String
+    let nombres:String
+    let apellidos:String
+    let direccion:String
+    let telCelular:String
+    let telCasa:String
 }
 
 struct Persona:Codable{
@@ -58,7 +68,7 @@ func login(username: String, password: String) -> User? {
     }
     """
     
-    guard let url = URL(string: "http://10.14.255.88:8804/auth/login") else {
+    guard let url = URL(string: "http://10.14.255.88:8804/auth/login/user") else {
         return nil
     }
     
@@ -88,20 +98,29 @@ func login(username: String, password: String) -> User? {
 }
 
 
-func getRecibos(token:String, donante:String, recolector:Int) -> [Donante] {
+func getRecibos(token:String, recolector:Int) -> Recolector {
     let graphQLQuery = """
         {
-            donantes(id: \(donante)) {
-                id,
-                recibosActivos(date: "2023-10-22", idRecolector: \(recolector)) {
+            recolector(id:\(recolector)){
+                id
+                recibosActivos(date: "2023-12-01", order: [{cobrado: DESC}]){
+                    id,
                     cantidad,
-                    id
+                    cobrado,
+                    donante{
+                        id,
+                        nombres,
+                        apellidos,
+                        direccion,
+                        telCelular,
+                        telCasa
+                    }
                 }
             }
         }
     """
     guard let url = URL(string: "http://10.14.255.88:8084/graphql") else {
-        return []
+        return Recolector(id: "", recibosActivos: [])
     }
 
     var request = URLRequest(url: url)
@@ -117,10 +136,10 @@ func getRecibos(token:String, donante:String, recolector:Int) -> [Donante] {
         request.httpBody = jsonData
     } catch {
         print("Error creating request body: \(error)")
-        return []
+        return Recolector(id: "", recibosActivos: [])
     }
 
-    var lista: [Donante] = []
+    var lista: Recolector = Recolector(id: "", recibosActivos: [])
 
     let semaphore = DispatchSemaphore(value: 0)
 
@@ -138,11 +157,14 @@ func getRecibos(token:String, donante:String, recolector:Int) -> [Donante] {
             let jsonDecoder = JSONDecoder()
             do {
                 let response = try jsonDecoder.decode(Response.self, from: data)
-                lista = response.data.donantes
+                lista = response.data.recolector
+                if let data = try? PropertyListEncoder().encode(lista.recibosActivos) {
+                        UserDefaults.standard.set(data, forKey: "recibos")
+                    }
             } catch {
                 print("Error decoding GraphQL response: \(error)")
                 print(String(data: data, encoding: .utf8))
-                print(donante)
+                
             }
         }
     }
@@ -162,89 +184,6 @@ for recibo in recibos {
 */
 
 //Some other structs
-struct DonanteResponse:Codable{
-    let data:DonanteDataResponse
-}
-
-struct DonanteDataResponse:Codable{
-    let donantesHoy:[donantesHoy]
-}
-
-struct donantesHoy:Codable, Identifiable{
-    let id:String
-    let nombres:String
-    let apellidos:String
-    let direccion:String
-    let telCelular:String
-    let telCasa:String
-    let cantidadRecibosActivos:Int
-}
-
-//API Calls
-func getDonantes(token:String, idRecolector:Int) -> [donantesHoy]{
-    let query = """
-    {
-      donantesHoy(date: "2023-10-22", idRecolector: \(idRecolector)){
-        id,
-        nombres,
-        apellidos,
-        direccion,
-        telCelular,
-        telCasa,
-        cantidadRecibosActivos(date:"2023-10-22",idRecolector: \(idRecolector))
-      }
-    }
-    """
-    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
-        return []
-    }
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    let requestBody = ["query": query]
-    do {
-        let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
-        request.httpBody = jsonData
-    } catch {
-        print("Error creating request body: \(error)")
-
-        return []
-    }
-    
-    var lista:[donantesHoy] = []
-    
-    let semaphore = DispatchSemaphore(value: 0)
-    
-    let task = URLSession.shared.dataTask(with: request){
-        data,response,error in
-        defer {
-            semaphore.signal()
-        }
-
-        if let error = error {
-            print("Error: \(error)")
-            return
-        }
-
-        if let data = data {
-            let jsonDecoder = JSONDecoder()
-            do {
-                let response = try jsonDecoder.decode(DonanteResponse.self, from: data)
-                lista = response.data.donantesHoy
-            } catch {
-                print("Error decoding GraphQL response: \(error)")
-                print(String(data:data, encoding:.utf8))
-            }
-        }
-    }
-    task.resume()
-    
-    semaphore.wait()
-    return lista
-    
-    
-}
 
 func cobrarRecibo(recibo:String, token:String)->Bool{
     let query = """
