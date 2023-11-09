@@ -25,9 +25,8 @@ struct HeaderView: View {
                 
             
         }
-        
         .edgesIgnoringSafeArea(.top)
-        .padding(.bottom, -40)
+        .padding(.bottom, -100)
     
     }
 }

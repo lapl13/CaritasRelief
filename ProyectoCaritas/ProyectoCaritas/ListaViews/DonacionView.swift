@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DonacionView: View {
-    var donante: donantesHoy
+    var donante: Donante
+    var recibo: recibosActivos
     @State var barColor:Color = .red
     var body: some View {
     
@@ -32,8 +33,8 @@ struct DonacionView: View {
                         */
                         //numero de recibos
                         HStack{
-                            Text("\(donante.cantidadRecibosActivos)")
-                            Image(systemName: "doc.plaintext")
+                            Text("#\(recibo.id)")
+                        
                             
                             
                         }
@@ -69,7 +70,7 @@ struct DonacionView: View {
             
             .background(.white)
             .onAppear(){
-                if(donante.cantidadRecibosActivos == 0){
+                if(Int(recibo.id) == 0){
                     barColor = .green
                 }else{
                     barColor = .red
@@ -84,7 +85,8 @@ struct DonacionView: View {
 
 struct DonacionView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var donante:donantesHoy = donantesHoy(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "", cantidadRecibosActivos: 1)
-        DonacionView(donante: donante)
+        @State var donante:Donante = Donante(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
+        @State var recibo:recibosActivos = recibosActivos( cantidad: 200.0, id: "1", donante: donante)
+        DonacionView(donante: donante, recibo: recibo)
     }
 }
