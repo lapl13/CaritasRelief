@@ -9,7 +9,7 @@ CREATE TABLE Recibos
     idRecolector int NOT NULL,
     idDonante int NOT NULL,
     cantidad money,
-    cobrado bit,
+    cobrado int,
     comentarios varchar(100),
     fecha date,
     comentarioHorario varchar(150),
