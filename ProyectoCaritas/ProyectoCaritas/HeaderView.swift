@@ -10,23 +10,18 @@ import SwiftUI
 struct HeaderView: View {
     var titulo = ""
     var body: some View {
-        VStack {
             
-            Text(titulo)
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-                .bold()
-                .frame(width:1000)
-                .padding(.bottom, 30)
-                .padding(.top, 80)
-                .background(ColorSecundario)
-                .foregroundColor(.white)
-                
-                
-            
-        }
-        .edgesIgnoringSafeArea(.top)
-        .padding(.bottom, -100)
+        Text(titulo)
+            .font(.largeTitle)
+            .multilineTextAlignment(.center)
+            .bold()
+            .frame(width:1000)
+            .padding(.bottom, 30)
+            .padding(.top, 80)
+            .background(ColorSecundario)
+            .foregroundColor(.white)
+            .edgesIgnoringSafeArea(.top)
+            .padding(.bottom, -100)
     
     }
 }

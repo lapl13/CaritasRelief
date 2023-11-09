@@ -51,12 +51,12 @@ struct DetalleView: View {
                     
                 }.padding(.bottom, 15)
                 
-                
+            
                 
             }.padding(.horizontal, 30)
             ReciboView(recibo: recibo,token: token)
             
-            
+            Spacer()
         }
     }
 }
