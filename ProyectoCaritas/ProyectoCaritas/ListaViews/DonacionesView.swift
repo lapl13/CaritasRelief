@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct DonacionesView: View {
+    @State var token:String
+    @State var recolector:Int
     @State private var visited = true
-    @State private var listaDonantes = getDonantes()
+    
+    
     var body: some View {
+        let listaDonantes = getDonantes(token: token, idRecolector: recolector)
         NavigationStack{
             VStack{
                 HeaderView(titulo: "DONACIONES")
@@ -30,7 +34,7 @@ struct DonacionesView: View {
                 List(listaDonantes){donanteItem in
                     NavigationLink{
                         
-                        DetalleView(donante: donanteItem)
+                        DetalleView(donante: donanteItem,recolector:recolector,token: token)
                         
                     }label:{
                         DonacionView(donante: donanteItem)
@@ -48,6 +52,6 @@ struct DonacionesView: View {
 
 struct DonacionesView_Previews: PreviewProvider {
     static var previews: some View {
-        DonacionesView()
+        DonacionesView(token: "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKTWFydGluZXoxMDAiLCJpYXQiOiIxMC8yMi8yMDIzIDAwOjA5OjAxIiwianRpIjoiMzNkYzMzNzgtMDBlNy00ZmNhLWEwMzctMmMwMTkyMGRjYmQyIiwicm9sZSI6InVzZXIiLCJleHAiOjE2OTgwMTk3NDF9.3hoBmCh9owaSJADDluntMDCIbdj9zQKm9XCpG6yzdHs",recolector: 1)
     }
 }

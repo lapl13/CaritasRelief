@@ -18,6 +18,10 @@ struct SplashScreen: View {
                     .foregroundColor(ColorP)
                 VStack {
                     Image("CaritasLogo")
+                        .resizable(resizingMode: .stretch)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 255)
+                       
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
