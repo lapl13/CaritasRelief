@@ -28,6 +28,18 @@ RETURN
 
 
 
+CREATE OR ALTER FUNCTION fnEstadosCobradoRecolector(@DIA date, @IDRECOLECTOR int)
+RETURNS TABLE
+AS
+RETURN
+    SELECT
+        (SELECT COUNT(*) FROM Recibos WHERE cobrado = 1 AND @DIA = fecha AND @IDRECOLECTOR = idRecolector) AS cobrados,
+        (SELECT COUNT(*) FROM Recibos WHERE cobrado = 2 AND @DIA = fecha AND @IDRECOLECTOR = idRecolector) AS pendientes,
+        (SELECT COUNT(*) FROM Recibos WHERE cobrado = 0 AND @DIA = fecha AND @IDRECOLECTOR = idRecolector) AS cobradosFallidos;
+--SELECT * FROM dbo.fnTotalEstadosCobrado('2023-12-01', 1);
+
+
+
 ------------------------------------------
 -- -- -- -- STORED PROECEDURES -- -- -- --
 ------------------------------------------
