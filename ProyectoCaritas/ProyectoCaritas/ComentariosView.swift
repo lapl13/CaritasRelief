@@ -7,53 +7,82 @@
 
 import SwiftUI
 
+struct opcion: Identifiable {
+    let id: Int
+    let text: String
+}
+
 struct ComentariosView: View {
-    var recibo:String
-    var token:String
+    var recibo: String
+    var token: String
     @Environment(\.dismiss) private var dismiss
     @State private var confirmation = false
     @State private var done = false
-    @State private var text:String = ""
+    @State private var selectedOpcion: opcion?
+    @State private var text: String = ""
+    let opciones: [opcion] = [
+        opcion(id: 1, text: "No se encontraba en casa"),
+        opcion(id: 2, text: "Ya no vive ahi"),
+        opcion(id: 3, text: "No desea continuar ayudando"),
+        opcion(id: 4, text: "Indispuesto"),
+        opcion(id: 5, text: "No se ubicó el domicilio")
+    ]
+
     var body: some View {
-        VStack{
-            ZStack{
-                HeaderView(titulo: "COMENTARIOS")
-            }
+        VStack {
             
-            TextField("e.g. Cliente no estaba, no tenía el dinero, etc.", text:$text,axis: .vertical)
+            HeaderView(titulo: "NO COBRADO")
+                .padding(.bottom, 90)
             
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 350)
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(10,reservesSpace: true)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(.black))
-                .font(.system(size: 20))
-            Spacer()
-            Button(action: confirm){
-                Text("Enviar")
-                    .padding(.horizontal,120 )
-                    .padding(.vertical,12)
-                    .font(.title)
-            }.buttonStyle(.borderedProminent)
-                .tint(ColorPrincipal)
-                .alert("¿Estas seguro de que deseas enviar los comentarios?",isPresented: $confirmation){
-                    Button("No"){}
-                    Button("Si"){
-                        sendComments(recibo: recibo, comentarios: text, token: token)
-                        done.toggle()
+            List(opciones) { opcion in
+                Button(action: ({
+                    self.text = opcion.text
+                    self.confirmation = true
+                })
+                )
+                {
+                    HStack{
+                        
+                   Spacer()
+                    
+                    Text(opcion.text)
+                        .font(.system(size: 25))
+                        .padding(.vertical, 20)
+                        
+                    Spacer()
                         
                     }
                 }
-                .alert("Comentarios enviados exitosamente",isPresented: $done){
-                    Button("Ok"){
-                        dismiss()
-                    }
+                .tint(ColorPrincipal)
+                .buttonStyle(.borderedProminent)
+                .listRowSeparator(.hidden)
+                .frame(width: 350)
+                .padding(.bottom, 10)
+                
+            }
+            .listStyle(.plain)
+            .navigationTitle("Opciones")
+            
+            Spacer()
+
+          
+            .alert("¿Estas seguro de que deseas enviar los comentarios?", isPresented: $confirmation) {
+                Button("No") { self.confirmation = false }
+                Button("Si") {
+                    sendComments(recibo: recibo, comentarios: text, token: token)
+                    done.toggle()
                 }
+            }
+            .alert("Comentarios enviados exitosamente", isPresented: $done) {
+                Button("Ok") {
+                    dismiss()
+                }
+            }
         }
     }
-    func confirm(){
+    
+    func confirm() {
         confirmation.toggle()
-        
     }
 }
 
