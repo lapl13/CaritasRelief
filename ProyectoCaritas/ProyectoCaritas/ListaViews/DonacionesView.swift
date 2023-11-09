@@ -12,9 +12,10 @@ struct DonacionesView: View {
     @State var token:String
     @State var recolector:Int
     @State private var visited = true
+    
     var body: some View {
     
-        var recibos:[recibosActivos] = getRecibos(token: token, recolector: recolector).recibosActivos
+        @State var recibos:[recibosActivos] = getRecibos(token: token, recolector: recolector).recibosActivos
         
        
         
@@ -36,12 +37,19 @@ struct DonacionesView: View {
                 
                 List{
                     ForEach(recibos){reciboItem in
-                        NavigationLink{
-                            
-                            DetalleView(donante: reciboItem.donante,recibo: reciboItem,recolector:recolector,token: token)
-                            
-                        }label:{
+                        if(reciboItem.cobrado == 2){
+                            NavigationLink{
+                                
+                                DetalleView(donante: reciboItem.donante,recibo: reciboItem,recolector:recolector,token: token)
+                                
+                            }label:{
+                                DonacionView(donante: reciboItem.donante,recibo: reciboItem)
+                                    
+                            }
+                        }else{
                             DonacionView(donante: reciboItem.donante,recibo: reciboItem)
+                                .padding(.trailing, 17)
+                            
                         }
                     }.onMove {indexSet, offset in
                         recibos.move(fromOffsets: indexSet, toOffset: offset)

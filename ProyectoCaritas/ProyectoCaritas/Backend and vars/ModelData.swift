@@ -38,6 +38,7 @@ struct Recolector: Codable, Identifiable {
 struct recibosActivos:Codable, Identifiable{
     let cantidad:Double
     let id:String
+    let cobrado: Int
     let donante:Donante
 }
 
@@ -102,9 +103,10 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
         {
             recolector(id:\(recolector)){
                 id
-                recibosActivos(date: "2023-12-01"){
+                recibosActivos(date: "2023-12-01", order: [{cobrado: DESC}]){
                     id,
                     cantidad,
+                    cobrado,
                     donante{
                         id,
                         nombres,

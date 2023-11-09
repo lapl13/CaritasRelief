@@ -68,6 +68,8 @@ struct ReciboView: View {
                                 if(response == false){
                                     errorAlert.toggle()
                                 }
+                                
+                                
                             }
                             Button("NO"){}
                         }
@@ -102,6 +104,6 @@ struct ReciboView: View {
 
 struct ReciboView_Previews: PreviewProvider {
     static var previews: some View {
-        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1", donante: Donante(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")), token:"")
+        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1", cobrado: 2 ,donante: Donante(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")), token:"")
     }
 }

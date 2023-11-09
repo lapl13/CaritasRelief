@@ -51,11 +51,18 @@ struct DetalleView: View {
                     
                 }.padding(.bottom, 15)
                 
+                
             
                 
             }.padding(.horizontal, 30)
-            ReciboView(recibo: recibo,token: token)
-            
+            .padding(.top, 20)
+            if(recibo.cobrado == 2){
+                ReciboView(recibo: recibo,token: token)
+                    .padding(.horizontal, 20)
+            }else{
+                Text("No tiene cobros pendientes")
+                    .font(.title)
+            }
             Spacer()
         }
     }
@@ -64,7 +71,7 @@ struct DetalleView: View {
 struct DetalleView_Previews: PreviewProvider {
     static var previews: some View {
         @State var donante:Donante = Donante(id: "1", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
-        @State var recibo:recibosActivos = recibosActivos( cantidad: 200.0, id: "1", donante: donante)
+        @State var recibo:recibosActivos = recibosActivos( cantidad: 200.0, id: "1", cobrado: 2, donante: donante)
         DetalleView(donante: donante, recibo: recibo, recolector: 1 ,token: "")
     }
 }
