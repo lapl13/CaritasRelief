@@ -97,8 +97,26 @@ func login(username: String, password: String) -> User? {
     return user
 }
 
+func getRecibosActivos(token:String, recolector:Int) -> [recibosActivos] {
+    
+    /*
+    var recibos:[recibosActivos]
+    
+    let defaults = UserDefaults.standard
+    if let data = defaults.data(forKey: "recibos") {
+        print("Si encontro el default")
+        let array = try! PropertyListDecoder().decode([recibosActivos].self, from: data)
+        recibos = array
+        return recibos
+    }
+    */
+    return getRecibos(token: token, recolector: recolector).recibosActivos
+    
+    
+}
 
 func getRecibos(token:String, recolector:Int) -> Recolector {
+    
     let graphQLQuery = """
         {
             recolector(id:\(recolector)){
@@ -158,9 +176,8 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
             do {
                 let response = try jsonDecoder.decode(Response.self, from: data)
                 lista = response.data.recolector
-                if let data = try? PropertyListEncoder().encode(lista.recibosActivos) {
-                        UserDefaults.standard.set(data, forKey: "recibos")
-                    }
+            
+            
             } catch {
                 print("Error decoding GraphQL response: \(error)")
                 print(String(data: data, encoding: .utf8))
@@ -171,6 +188,7 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
     task.resume()
 
     semaphore.wait()
+    
     return lista
 }
 /*
