@@ -40,6 +40,20 @@ RETURN
 
 
 
+CREATE OR ALTER FUNCTION fnDineroTotalCobrado(@DIA date)
+RETURNS money
+AS
+BEGIN
+    DECLARE @total money;
+    SELECT @total = SUM(cantidad)
+    FROM Recibos
+    WHERE cobrado = 1 AND @DIA = fecha
+    RETURN @total;
+END;
+--SELECT dbo.fnDineroTotalCobrado('2023-12-01');
+
+
+
 CREATE OR ALTER FUNCTION fnDineroTotalRecolector(@DIA date, @IDRECOLECTOR int)
 RETURNS money
 AS
@@ -56,3 +70,11 @@ END;
 ------------------------------------------
 -- -- -- -- STORED PROECEDURES -- -- -- --
 ------------------------------------------
+
+CREATE PROCEDURE spUpdateReciboNuevoRecolector @idRecibo int, @idRecolectorNuevo int
+    AS  
+        UPDATE recibos
+        SET idRecolector = @idRecolectorNuevo
+        WHERE idRecibo = @idRecibo;
+--EXECUTE spUpdateReciboRecolector 2, 2;
+
