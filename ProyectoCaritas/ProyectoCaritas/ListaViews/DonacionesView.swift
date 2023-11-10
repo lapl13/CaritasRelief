@@ -15,9 +15,9 @@ struct DonacionesView: View {
     
     var body: some View {
     
-        @State var recibos:[recibosActivos] = getRecibos(token: token, recolector: recolector).recibosActivos
+        @State var recibos:[recibosActivos] = getRecibosActivos(token: token, recolector: recolector)
         
-       
+
         
         NavigationStack{
             VStack{
@@ -35,8 +35,10 @@ struct DonacionesView: View {
                 
                 */
                 
-                List{
+                List(){
+                
                     ForEach(recibos){reciboItem in
+                        
                         if(reciboItem.cobrado == 2){
                             NavigationLink{
                                 
@@ -44,34 +46,57 @@ struct DonacionesView: View {
                                 
                             }label:{
                                 DonacionView(donante: reciboItem.donante,recibo: reciboItem)
-                                    
+                                
                             }
                         }else{
                             DonacionView(donante: reciboItem.donante,recibo: reciboItem)
                                 .padding(.trailing, 17)
                             
                         }
-                    }.onMove {indexSet, offset in
+                    }
+                    .onMove {indexSet, offset in
                         recibos.move(fromOffsets: indexSet, toOffset: offset)
+                        
+                        var list:[Int] = [1, 2, 3, 4]
+                        
+                        list.move(fromOffsets: indexSet, toOffset: offset)
+                        print(indexSet.first!)
+                        print(offset)
+//                        var temp:recibosActivos
+                        print(recibos[indexSet.first!])
+                        print(recibos[offset])
+                        recibos.swapAt(indexSet.first!, offset)
+                        
+                        /*
+                        temp = recibos[indexSet.first!]
+                        recibos[indexSet.first!] = recibos[offset]
+                        recibos[offset] = temp
+                        */
+                        print("----------------------")
+                        print(recibos[indexSet.first!])
+                        print(recibos[offset])
+                        print(list)
+                        
                         if let data = try? PropertyListEncoder().encode(recibos) {
+                               
                                 UserDefaults.standard.set(data, forKey: "recibos")
+                                print("Si se pudo recibir")
                             }
                        
                     }
-                
-        
                 }
                 .listStyle(.plain)
                 .onAppear(){
-                    let defaults = UserDefaults.standard
-                    if let data = defaults.data(forKey: "recibos") {
-                        let array = try! PropertyListDecoder().decode([recibosActivos].self, from: data)
-                        recibos = array
-                        }
+                    
+                    recibos = getRecibosActivos(token: token, recolector: recolector)
+                    print("Se cargan los recibos!!!!")
+                    
+                    
                     
                 }
                 
                 
+
                 
             }
         }
