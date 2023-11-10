@@ -12,6 +12,9 @@ struct ReciboView: View {
     @State private var confirmarAccion:Bool = false
     @State private var errorAlert:Bool = false
     @State private var comentarios:Bool = false
+    @State private var receiptConfirmedForCollection = false
+    @Environment(\.presentationMode) var presentationMode
+
     var token:String
     var body: some View {
         NavigationStack{
@@ -60,7 +63,8 @@ struct ReciboView: View {
                                     errorAlert.toggle()
                                 }
                                 
-                                
+                                presentationMode.wrappedValue.dismiss()
+
                             }
                             Button("No"){}
                         }

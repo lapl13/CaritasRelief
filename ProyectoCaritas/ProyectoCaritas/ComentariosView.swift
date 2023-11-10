@@ -67,11 +67,11 @@ struct ComentariosView: View {
 
           
             .alert("¿Estas seguro de que deseas enviar los comentarios?", isPresented: $confirmation) {
-                Button("No") { self.confirmation = false }
                 Button("Si") {
                     sendComments(recibo: recibo, comentarios: text, token: token)
                     done.toggle()
                 }
+                Button("No") { self.confirmation = false }
             }
             .alert("Comentarios enviados exitosamente", isPresented: $done) {
                 Button("Ok") {
