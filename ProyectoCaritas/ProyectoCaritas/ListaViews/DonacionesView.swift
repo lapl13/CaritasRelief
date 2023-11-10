@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct DonacionesView: View {
     @State var token:String
     @State var recolector:Int
     @State private var visited = true
     
-    
     var body: some View {
-        let listaDonantes = getDonantes(token: token, idRecolector: recolector)
+    
+        @State var recibos:[recibosActivos] = getRecibos(token: token, recolector: recolector).recibosActivos
+        
+       
+        
         NavigationStack{
             VStack{
                 HeaderView(titulo: "DONACIONES")
@@ -31,17 +35,41 @@ struct DonacionesView: View {
                 
                 */
                 
-                List(listaDonantes){donanteItem in
-                    NavigationLink{
-                        
-                        DetalleView(donante: donanteItem,recolector:recolector,token: token)
-                        
-                    }label:{
-                        DonacionView(donante: donanteItem)
+                List{
+                    ForEach(recibos){reciboItem in
+                        if(reciboItem.cobrado == 2){
+                            NavigationLink{
+                                
+                                DetalleView(donante: reciboItem.donante,recibo: reciboItem,recolector:recolector,token: token)
+                                
+                            }label:{
+                                DonacionView(donante: reciboItem.donante,recibo: reciboItem)
+                                    
+                            }
+                        }else{
+                            DonacionView(donante: reciboItem.donante,recibo: reciboItem)
+                                .padding(.trailing, 17)
+                            
+                        }
+                    }.onMove {indexSet, offset in
+                        recibos.move(fromOffsets: indexSet, toOffset: offset)
+                        if let data = try? PropertyListEncoder().encode(recibos) {
+                                UserDefaults.standard.set(data, forKey: "recibos")
+                            }
+                       
                     }
+                
         
                 }
                 .listStyle(.plain)
+                .onAppear(){
+                    let defaults = UserDefaults.standard
+                    if let data = defaults.data(forKey: "recibos") {
+                        let array = try! PropertyListDecoder().decode([recibosActivos].self, from: data)
+                        recibos = array
+                        }
+                    
+                }
                 
                 
                 
@@ -52,6 +80,7 @@ struct DonacionesView: View {
 
 struct DonacionesView_Previews: PreviewProvider {
     static var previews: some View {
-        DonacionesView(token: "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKTWFydGluZXoxMDAiLCJpYXQiOiIxMC8yMi8yMDIzIDAwOjA5OjAxIiwianRpIjoiMzNkYzMzNzgtMDBlNy00ZmNhLWEwMzctMmMwMTkyMGRjYmQyIiwicm9sZSI6InVzZXIiLCJleHAiOjE2OTgwMTk3NDF9.3hoBmCh9owaSJADDluntMDCIbdj9zQKm9XCpG6yzdHs",recolector: 1)
+        DonacionesView(token: "",recolector: 1)
+        
     }
 }
