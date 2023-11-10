@@ -121,7 +121,7 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
         {
             recolector(id:\(recolector)){
                 id
-                recibosActivos(date: "2023-12-01", order: [{cobrado: DESC}]){
+                recibosActivos(date: "2023-12-01", order: [{cobrado: DESC}, {orden: ASC}]){
                     id,
                     cantidad,
                     cobrado,
@@ -242,6 +242,46 @@ func cobrarRecibo(recibo:String, token:String)->Bool{
     task.resume()
     return responseval
     
+}
+
+func reordenarRecibo(idRecibo: Int, posicion: Int, token: String)->Bool{
+    let query = """
+    {
+        actualizarOrden(id: \(idRecibo), pos: \(posicion))
+    }
+    """
+    
+    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
+        return false
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    let requestBody = ["query": query]
+    do {
+        let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
+        request.httpBody = jsonData
+    } catch {
+        print("Error creating request body: \(error)")
+
+        return false
+    }
+    
+    var responseval:Bool = false
+    
+    let task = URLSession.shared.dataTask(with: request){
+        data,response,error in
+        let jsonDecoder = JSONDecoder()
+        if (data != nil){
+            responseval = true
+        }else{
+            responseval = false
+        }
+    }
+    
+    task.resume()
+    return responseval
 }
 
 struct postponeResponse:Codable{

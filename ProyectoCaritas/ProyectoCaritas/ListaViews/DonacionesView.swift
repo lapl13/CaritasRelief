@@ -50,14 +50,12 @@ struct DonacionesView: View {
                             
                         }
                     }.onMove {indexSet, offset in
-                        print(recibos)
                         recibos.move(fromOffsets: indexSet, toOffset: offset)
-                        print("-----------")
-                        print(recibos)
-                        if let data = try? PropertyListEncoder().encode(recibos) {
-                                UserDefaults.standard.set(data, forKey: "recibos")
-                            }
-                       
+                    
+                        for i in 0...recibos.count-1 {
+                            print(i)
+                            print(reordenarRecibo(idRecibo: Int(recibos[i].id)!, posicion: i, token: token))
+                        }
                     }
                 
         
