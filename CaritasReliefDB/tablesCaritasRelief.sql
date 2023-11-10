@@ -13,6 +13,7 @@ CREATE TABLE Recibos
     comentarios varchar(100),
     fecha date,
     comentarioHorario varchar(150),
+    orden int default = 0,
     activo bit NOT NULL
 );
 
