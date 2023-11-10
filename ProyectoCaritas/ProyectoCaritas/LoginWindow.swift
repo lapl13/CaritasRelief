@@ -112,7 +112,7 @@ struct LoginWindow: View {
                         Alert(title: Text("Usuario o contraseña incorrectos"))
                     }
                     .navigationDestination( isPresented: $authorized){
-                        DonacionesView(token:token, recolector: recolector)
+                        DonacionesView(token:token, recolector: recolector, recibos: [])
                     }
                     .onAppear {
                         withAnimation(.spring().delay(0.8)) {
