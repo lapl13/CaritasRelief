@@ -23,17 +23,16 @@ struct ReciboView: View {
                             Text("#\(recibo.id)")
                                 .font(.largeTitle)
                                 .bold()
+                                .padding(.leading, 20)
                             Spacer()
                             
                             Text("$\(Int(recibo.cantidad))")
                                 .font(.title)
                                 .foregroundColor(Color(red: 0.003, green: 0.208, blue: 0.327))
-                            
-                            
-                            
+                     
                                 .font(.title)
+                                .padding(.trailing, 20)
                                 .foregroundColor(Color(red: 0.003, green: 0.208, blue: 0.327))
-                            
                             
                         }.padding(.bottom, 8)
                         
@@ -43,20 +42,12 @@ struct ReciboView: View {
                     .padding(.bottom, 20)
                     HStack{
                         Spacer()
-                        Button(action: comentariosAct){
-                            
-                            Image(systemName: "xmark")
-                                .font(.title)
-                                .padding(.horizontal,50 )
-                        }.buttonStyle(.borderedProminent)
-                            .tint(.red)
-                            .navigationDestination(isPresented: $comentarios){
-                                ComentariosView(recibo: recibo.id, token: token)
-                            }
+                        
                         Button(action: confirmar){
                             
-                            Image(systemName: "checkmark")
+                            Text("Sí")
                                 .padding(.horizontal,50 )
+                                .padding(.vertical, 20)
                                 .font(.title)
                             
                         }
@@ -74,7 +65,17 @@ struct ReciboView: View {
                             Button("No"){}
                         }
                         
-                        
+                        Button(action: comentariosAct){
+                            
+                            Text("No")
+                                .font(.title)
+                                .padding(.horizontal, 50)
+                                .padding(.vertical, 20)
+                        }.buttonStyle(.borderedProminent)
+                            .tint(.red)
+                            .navigationDestination(isPresented: $comentarios){
+                                ComentariosView(recibo: recibo.id, token: token)
+                            }
                         
                         
                         Spacer()
