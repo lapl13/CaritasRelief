@@ -23,6 +23,7 @@ struct DetalleView: View {
                         
                     Text(donante.direccion)
                         .font(.title)
+                        .underline()
                         .padding(.leading, 10)
                     Spacer()
                 }.padding(.bottom, 15)
