@@ -21,9 +21,8 @@ struct DetalleView: View {
                         .font(.largeTitle)
                         .foregroundColor(ColorPrincipal)
                         
-                    Text(donante.direccion)
+                    Link("\(donante.direccion)", destination: URL(string: "http://maps.apple.com/?q=\(donante.latitude),\(donante.longitude)")!)
                         .font(.title)
-                        .underline()
                         .padding(.leading, 10)
                     Spacer()
                 }.padding(.bottom, 15)
@@ -33,7 +32,7 @@ struct DetalleView: View {
                         .foregroundColor(ColorPrincipal)
                         
                     
-                    Text(donante.telCelular)
+                    Link("\(donante.telCelular)", destination: URL(string: "tel:\(donante.telCelular))")!)
                         .font(.title)
                         .padding(.leading, 10)
                     Spacer()
@@ -45,7 +44,7 @@ struct DetalleView: View {
                         .font(.largeTitle)
                         .foregroundColor(ColorPrincipal)
                     
-                    Text(donante.telCasa)
+                    Link("\(donante.telCasa)", destination: URL(string: "tel:\(donante.telCasa)")!)
                         .font(.title)
                         .padding(.leading, 10)
                     Spacer()
@@ -71,7 +70,7 @@ struct DetalleView: View {
 
 struct DetalleView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var donante:Donante = Donante(id: "1", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")
+        @State var donante:Donante = Donante(id: "1", nombres: "", apellidos: "", direccion: "", latitude: 0.0, longitude: 0.0, telCelular: "", telCasa: "")
         @State var recibo:recibosActivos = recibosActivos( cantidad: 200.0, id: "1", cobrado: 2, donante: donante)
         DetalleView(donante: donante, recibo: recibo, recolector: 1 ,token: "")
     }

@@ -110,6 +110,6 @@ struct ReciboView: View {
 
 struct ReciboView_Previews: PreviewProvider {
     static var previews: some View {
-        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1", cobrado: 2 ,donante: Donante(id: "", nombres: "", apellidos: "", direccion: "", telCelular: "", telCasa: "")), token:"")
+        ReciboView(recibo: recibosActivos(cantidad: 200.0, id: "1", cobrado: 2 ,donante: Donante(id: "", nombres: "", apellidos: "", direccion: "", latitude: 0.0, longitude: 0.0, telCelular: "", telCasa: "")), token:"")
     }
 }

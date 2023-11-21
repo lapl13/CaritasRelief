@@ -47,6 +47,8 @@ struct Donante:Codable, Identifiable{
     let nombres:String
     let apellidos:String
     let direccion:String
+    let latitude:Double
+    let longitude:Double
     let telCelular:String
     let telCasa:String
 }
@@ -130,6 +132,8 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
                         nombres,
                         apellidos,
                         direccion,
+                        longitude,
+                        latitude,
                         telCelular,
                         telCasa
                     }
