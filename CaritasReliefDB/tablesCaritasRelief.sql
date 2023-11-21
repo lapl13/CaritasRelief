@@ -2,7 +2,6 @@
 
 BEGIN;
 
-
 CREATE TABLE Recibos
 (
     idRecibo int IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -23,6 +22,8 @@ CREATE TABLE Donantes
     apellidos varchar(50),
     direccion varchar(150),
     referenciaDomicilio varchar(150),
+    latitude decimal(9,6),
+    longitude decimal(9,6),
     telCasa varchar(20),
     telCelular varchar(20),
     activo bit NOT NULL

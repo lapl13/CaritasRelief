@@ -71,7 +71,7 @@ END;
 -- -- -- -- STORED PROECEDURES -- -- -- --
 ------------------------------------------
 
-CREATE PROCEDURE spUpdateReciboNuevoRecolector @idRecibo int, @idRecolectorNuevo int
+CREATE OR ALTER PROCEDURE spUpdateReciboNuevoRecolector @idRecibo int, @idRecolectorNuevo int
     AS  
         UPDATE recibos
         SET idRecolector = @idRecolectorNuevo
