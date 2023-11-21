@@ -26,6 +26,8 @@ CREATE TABLE Donantes
     referenciaDomicilio varchar(150),
     telCasa varchar(20),
     telCelular varchar(20),
+    latitude decimal(9,6),
+    longitude decimal(9,6),
     activo bit NOT NULL
 );
 
