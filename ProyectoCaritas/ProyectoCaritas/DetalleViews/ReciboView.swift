@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ReciboView: View {
-    @State var recibo:recibosActivos
-    @State private var confirmarAccion:Bool = false
-    @State private var errorAlert:Bool = false
-    @State private var comentarios:Bool = false
-    @State private var receiptConfirmedForCollection = false
+    @State var recibo: recibosActivos
+    @State private var confirmarAccion: Bool = false
+    @State private var errorAlert: Bool = false
+    @State private var comentarios: Bool = false
     @Environment(\.presentationMode) var presentationMode
 
-    var token:String
+    var token: String
+
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationView {
+            VStack {
                 VStack(alignment: .leading){
                     VStack(alignment: .leading){
                         HStack(alignment: .center){
@@ -32,7 +32,7 @@ struct ReciboView: View {
                             Text("$\(Int(recibo.cantidad))")
                                 .font(.title)
                                 .foregroundColor(Color(red: 0.003, green: 0.208, blue: 0.327))
-                     
+                            
                                 .font(.title)
                                 .padding(.trailing, 20)
                                 .foregroundColor(Color(red: 0.003, green: 0.208, blue: 0.327))
@@ -43,70 +43,58 @@ struct ReciboView: View {
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 20)
-                    HStack{
-                        Spacer()
-                        
-                        Button(action: confirmar){
-                            
-                            Text("Sí")
-                                .padding(.horizontal,50 )
-                                .padding(.vertical, 20)
-                                .font(.title)
-                            
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(ColorPrincipal)
-                        .alert("¿Deseas marcar el recibo como cobrado?",isPresented: $confirmarAccion){
-                            Button("Si"){
-                                let response = cobrarRecibo(recibo: recibo.id, token: token)
-                                if(response == false){
-                                    errorAlert.toggle()
-                                }
-                                
-                                presentationMode.wrappedValue.dismiss()
-
-                            }
-                            Button("No"){}
-                        }
-                        
-                        Button(action: comentariosAct){
-                            
-                            Text("No")
-                                .font(.title)
-                                .padding(.horizontal, 50)
-                                .padding(.vertical, 20)
-                        }.buttonStyle(.borderedProminent)
-                            .tint(.red)
-                            .navigationDestination(isPresented: $comentarios){
-                                ComentariosView(recibo: recibo.id, token: token)
-                            }
-                        
-                        
-                        Spacer()
-                        
-                    }
-                    .padding(.bottom, 20)
                 }
-                .padding(.top, 20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(.gray, lineWidth: 1)
-                )
-                
-                .background(.white)
-                
+
+                HStack {
+                    Spacer()
+
+                    Button(action: {
+                        confirmarAccion.toggle()
+                    }) {
+                        Text("Cobrado")
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 37)
+                            .font(.title)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(ColorPrincipal)
+                    .alert("¿Deseas marcar el recibo como cobrado?", isPresented: $confirmarAccion) {
+                        Button("Si") {
+                            let response = cobrarRecibo(recibo: recibo.id, token: token)
+                            if response == false {
+                                errorAlert.toggle()
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                        Button("No") {}
+                    }
+
+                    NavigationLink(destination: ComentariosView(recibo: recibo.id, token: token), isActive: $comentarios) {
+                        Text("No cobrado")
+                            .font(.title)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 20)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
+
+                    Spacer()
+                }
+                .padding(.bottom, 20)
             }
-            
+            .padding(.top, 20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
+            .background(Color.white)
         }
     }
-    
-    func confirmar(){
-        confirmarAccion.toggle()
-    }
-    func comentariosAct(){
-        comentarios.toggle()
-    }
 }
+
 
 struct ReciboView_Previews: PreviewProvider {
     static var previews: some View {

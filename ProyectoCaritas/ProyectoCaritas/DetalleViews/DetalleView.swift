@@ -11,60 +11,80 @@ struct DetalleView: View {
     var donante:Donante
     var recibo:recibosActivos
     var recolector:Int
+    @Environment(\.presentationMode) var presentationMode
     @State var token:String
         var body: some View {
-        VStack(alignment: .center){
-            HeaderView(titulo: "\(donante.nombres) \(donante.apellidos)")
-            VStack{
-                HStack(alignment: .center){
-                    Image(systemName: "mappin.circle.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(ColorPrincipal)
+            NavigationStack{
+                VStack(alignment: .center){
+                    ZStack{
+                        HeaderView(titulo: "\(donante.nombres) \(donante.apellidos)").padding(.bottom,50)
+                        HStack{
+                            Button(action: {
+                                                    // Handle the back action
+                                                    presentationMode.wrappedValue.dismiss()
+                                                }) {
+                                                    Image(systemName: "chevron.left")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 20, height: 20)
+                                                        .foregroundColor(.white)
+                                                }
+                                                .padding()
+                        }.offset(x:-175,y:-15)
                         
-                    Link("\(donante.direccion)", destination: URL(string: "http://maps.apple.com/?q=\(donante.latitude),\(donante.longitude)")!)
-                        .font(.title)
-                        .padding(.leading, 10)
-                    Spacer()
-                }.padding(.bottom, 15)
-                HStack(alignment: .center){
-                    Image(systemName: "iphone.gen3")
-                        .font(.largeTitle)
-                        .foregroundColor(ColorPrincipal)
+                    }
+                    VStack{
+                        HStack(alignment: .center){
+                            Image(systemName: "mappin.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(ColorPrincipal)
+                            
+                            Link("\(donante.direccion)", destination: URL(string: "http://maps.apple.com/?q=\(donante.latitude),\(donante.longitude)")!)
+                                .font(.title)
+                                .padding(.leading, 10)
+                            Spacer()
+                        }.padding(.bottom, 15)
+                        HStack(alignment: .center){
+                            Image(systemName: "iphone.gen3")
+                                .font(.largeTitle)
+                                .foregroundColor(ColorPrincipal)
+                            
+                            
+                            Link("\(donante.telCelular)", destination: URL(string: "tel:\(donante.telCelular))")!)
+                                .font(.title)
+                                .padding(.leading, 10)
+                            Spacer()
+                            
+                        }.padding(.bottom, 15)
                         
-                    
-                    Link("\(donante.telCelular)", destination: URL(string: "tel:\(donante.telCelular))")!)
-                        .font(.title)
-                        .padding(.leading, 10)
+                        HStack(alignment: .center){
+                            Image(systemName: "phone.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(ColorPrincipal)
+                            
+                            Link("\(donante.telCasa)", destination: URL(string: "tel:\(donante.telCasa)")!)
+                                .font(.title)
+                                .padding(.leading, 10)
+                            Spacer()
+                            
+                        }.padding(.bottom, 15)
+                        
+                        
+                        
+                        
+                    }.padding(.horizontal, 30)
+                        .padding(.top, 20)
+                    if(recibo.cobrado == 2){
+                        ReciboView(recibo: recibo,token: token)
+                            .padding(.horizontal, 20)
+                    }else{
+                        Text("No tiene cobros pendientes")
+                            .font(.title)
+                    }
                     Spacer()
-                    
-                }.padding(.bottom, 15)
-                
-                HStack(alignment: .center){
-                    Image(systemName: "phone.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(ColorPrincipal)
-                    
-                    Link("\(donante.telCasa)", destination: URL(string: "tel:\(donante.telCasa)")!)
-                        .font(.title)
-                        .padding(.leading, 10)
-                    Spacer()
-                    
-                }.padding(.bottom, 15)
-                
-                
-            
-                
-            }.padding(.horizontal, 30)
-            .padding(.top, 20)
-            if(recibo.cobrado == 2){
-                ReciboView(recibo: recibo,token: token)
-                    .padding(.horizontal, 20)
-            }else{
-                Text("No tiene cobros pendientes")
-                    .font(.title)
+                }
             }
-            Spacer()
-        }
+            .navigationBarHidden(true)
     }
 }
 

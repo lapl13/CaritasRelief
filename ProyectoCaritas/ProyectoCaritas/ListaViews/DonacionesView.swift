@@ -19,7 +19,7 @@ struct DonacionesView: View {
         
         NavigationStack{
             VStack{
-                HeaderView(titulo: "DONACIONES")
+                HeaderView(titulo: "DONACIONES").padding(.bottom,20)
                 /*
                 Picker("Visita", selection: $visited) {
                     Text("Visitado")
@@ -67,6 +67,7 @@ struct DonacionesView: View {
                 
             }
         }
+        .navigationBarHidden(true)
     }
 }
 

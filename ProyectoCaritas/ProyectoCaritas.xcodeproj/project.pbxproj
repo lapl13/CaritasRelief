@@ -123,7 +123,6 @@
 		D5BF728E2AE04E1200FBB2F8 /* ProyectoCaritas */ = {
 			isa = PBXGroup;
 			children = (
-				CE18FAAF2AE4B9E000AAB45C /* ComentariosView.swift */,
 				CE51CC2E2AE06C4E00088134 /* Backend and vars */,
 				D5BF728F2AE04E1200FBB2F8 /* ProyectoCaritasApp.swift */,
 				D5BF72912AE04E1200FBB2F8 /* ContentView.swift */,
@@ -175,6 +174,7 @@
 		FBB720FC2AE2FBDA001B3334 /* DetalleViews */ = {
 			isa = PBXGroup;
 			children = (
+				CE18FAAF2AE4B9E000AAB45C /* ComentariosView.swift */,
 				FBB720FD2AE2FE34001B3334 /* DetalleView.swift */,
 				FBB720FF2AE30319001B3334 /* ReciboView.swift */,
 			);
@@ -481,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ProyectoCaritas/Preview Content\"";
-				DEVELOPMENT_TEAM = 8N3K3ZWMDG;
+				DEVELOPMENT_TEAM = 53V4WT87T9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -510,7 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ProyectoCaritas/Preview Content\"";
-				DEVELOPMENT_TEAM = 8N3K3ZWMDG;
+				DEVELOPMENT_TEAM = 53V4WT87T9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
