@@ -40,8 +40,10 @@ struct DetalleView: View {
                                 .foregroundColor(ColorPrincipal)
                             
                             Link("\(donante.direccion)", destination: URL(string: "http://maps.apple.com/?q=\(donante.latitude),\(donante.longitude)")!)
-                                .font(.title)
-                                .padding(.leading, 10)
+                                    .font(.title)
+                                    .padding(.leading, 10)
+                                    
+                            
                             Spacer()
                         }.padding(.bottom, 15)
                         HStack(alignment: .center){

@@ -53,8 +53,9 @@ struct ReciboView: View {
                     }) {
                         Text("Cobrado")
                             .padding(.horizontal, 20)
-                            .padding(.vertical, 37)
-                            .font(.title)
+                            .padding(.vertical, 34)
+                            .font(Font.system(size: 26, design: .default))
+                        
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(ColorPrincipal)
@@ -72,10 +73,10 @@ struct ReciboView: View {
                     }
 
                     NavigationLink(destination: ComentariosView(recibo: recibo.id, token: token), isActive: $comentarios) {
-                        Text("No cobrado")
-                            .font(.title)
+                        Text("No Cobrado")
+                            .font(Font.system(size: 26, design: .default))
                             .multilineTextAlignment(.center)
-                            .padding(.horizontal, 30)
+                            .padding(.horizontal, 20)
                             .padding(.vertical, 20)
                     }
                     .buttonStyle(.borderedProminent)
