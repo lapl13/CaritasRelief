@@ -23,7 +23,7 @@ struct ReciboView: View {
                     VStack(alignment: .leading){
                         HStack(alignment: .center){
                             
-                            Text("#\(recibo.id)")
+                            Text("#\(String(format: "%06d", Int(recibo.id)!))")
                                 .font(.largeTitle)
                                 .bold()
                                 .padding(.leading, 20)
