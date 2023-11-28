@@ -70,7 +70,7 @@ func login(username: String, password: String) -> User? {
     }
     """
     
-    guard let url = URL(string: "http://10.14.255.88:8804/auth/login/user") else {
+    guard let url = URL(string: "https://equipo20.tc2007b.tec.mx:8443/auth/login/user") else {
         return nil
     }
     
@@ -141,7 +141,7 @@ func getRecibos(token:String, recolector:Int) -> Recolector {
             }
         }
     """
-    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else {
+    guard let url = URL(string: "https://equipo20.tc2007b.tec.mx:8443/graphql") else {
         return Recolector(id: "", recibosActivos: [])
     }
 
@@ -214,7 +214,7 @@ func cobrarRecibo(recibo:String, token:String)->Bool{
     }
     """
     
-    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
+    guard let url = URL(string: "https://equipo20.tc2007b.tec.mx:8443/graphql") else{
         return false
     }
     var request = URLRequest(url: url)
@@ -255,7 +255,7 @@ func reordenarRecibo(idRecibo: Int, posicion: Int, token: String)->Bool{
     }
     """
     
-    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
+    guard let url = URL(string: "https://equipo20.tc2007b.tec.mx:8443/graphql") else{
         return false
     }
     var request = URLRequest(url: url)
@@ -302,7 +302,7 @@ func sendComments(recibo:String,comentarios:String,token:String){
         postponerRecibo(id: \(recibo), comentario: "\(comentarios)")
     }
     """
-    guard let url = URL(string: "http://10.14.255.88:8084/graphql") else{
+    guard let url = URL(string: "https://equipo20.tc2007b.tec.mx:8443/graphql") else{
         return
     }
     var request = URLRequest(url: url)
